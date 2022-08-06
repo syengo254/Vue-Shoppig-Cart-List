@@ -1,0 +1,40 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "24-Inch TV Samsung",
+      "price": 15000,
+      "available": 5
+    },
+    {
+      "id": 2,
+      "name": "Von Water Kettle",
+      "price": 1500,
+      "available": 1
+    },
+    {
+      "id": 3,
+      "name": "Von Sub-woofer 2.1",
+      "price": 7500,
+      "available": 2
+    },
+    {
+      "id": 4,
+      "name": "Velvex Serviettes",
+      "price": 120,
+      "available": 3
+    },
+    {
+      "id": 5,
+      "name": "Ceramic Plates (12 Pieces)",
+      "price": 1000,
+      "available": 20
+    },
+    {
+      "id": 6,
+      "name": "HP Elitebook Laptop",
+      "price": 35000,
+      "available": 0
+    }
+  ]
+}
