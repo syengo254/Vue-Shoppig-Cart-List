@@ -1,24 +1,11 @@
 <script setup>
-import { computed } from "@vue/reactivity";
+import useCart from "../composables/useCart";
 import useUtils from "../utils/useUtils";
 
-const props = defineProps({
-  cartItems: {
-    type: Object,
-    default: {},
-  },
-});
-const emits = defineEmits(["add-to-cart", "decrement-cart", "clear-cart"]);
-
 const { formatAmount } = useUtils();
-const cartEmpty = computed(() => Object.keys(props.cartItems).length === 0);
-const totalCost = computed(() => {
-  if (props.cartItems) {
-    return Object.values(props.cartItems).reduce((p, c) => p + c.total(), 0);
-  } else {
-    return 0;
-  }
-});
+
+const { cartItems, totalCost, cartEmpty, decreaseItem, addTocart, clearCart } =
+  useCart();
 </script>
 
 <template>
@@ -48,11 +35,8 @@ const totalCost = computed(() => {
             <td>{{ item.available }}</td>
             <td>{{ item.quantity }}</td>
             <td>
-              <button @click="$emit('decrement-cart', item.id)">-</button>
-              <button
-                @click="$emit('add-to-cart', item.id)"
-                :disabled="!item.canAdd()"
-              >
+              <button @click="decreaseItem(item.id)">-</button>
+              <button @click="addTocart(item)" :disabled="!item.canAdd()">
                 +
               </button>
             </td>
@@ -69,7 +53,7 @@ const totalCost = computed(() => {
           </tr>
         </tbody>
       </table>
-      <button v-if="!cartEmpty" @click="$emit('clear-cart')">Clear cart</button>
+      <button v-if="!cartEmpty" @click="clearCart()">Clear cart</button>
     </div>
   </div>
 </template>
